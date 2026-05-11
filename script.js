@@ -27,7 +27,9 @@
 
     if (reduced) return;
 
-    const maxTilt = el.matches('.hero-main-image, .intro-split img') ? 10 : 14;
+    let maxTilt = 14;
+    if (el.matches('.hero-main-image, .hero-thumb')) maxTilt = 4;
+    else if (el.matches('.intro-split img')) maxTilt = 8;
     let rafId = null;
     let targetRX = 0,
       targetRY = 0,
@@ -56,7 +58,7 @@
 
     el.addEventListener('mouseenter', () => {
       el.classList.add('tilt-active');
-      targetTZ = 18;
+      targetTZ = el.matches('.hero-main-image, .hero-thumb') ? 6 : 18;
       if (!rafId) rafId = requestAnimationFrame(animate);
     });
 
@@ -160,9 +162,9 @@
         const y = (e.clientY - rect.top) / rect.height - 0.5;
         heroVisual.style.transform =
           'perspective(1400px) rotateY(' +
-          (x * 4).toFixed(2) +
+          (x * 1.5).toFixed(2) +
           'deg) rotateX(' +
-          (-y * 3).toFixed(2) +
+          (-y * 1).toFixed(2) +
           'deg)';
       });
       heroGrid.addEventListener('mouseleave', () => {

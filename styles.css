@@ -478,13 +478,18 @@ h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
   background:
     radial-gradient(circle at 18% 28%, rgba(176,141,87,0.10) 0%, transparent 45%),
     radial-gradient(circle at 82% 72%, rgba(176,141,87,0.06) 0%, transparent 50%),
-    linear-gradient(180deg, #0a0a0a 0%, #141414 60%, #0e0e0e 100%);
+    linear-gradient(180deg, rgba(10,10,10,0.92) 0%, rgba(20,20,20,0.88) 60%, rgba(14,14,14,0.95) 100%),
+    url('feuerwaffe-gewehr-waffe-buchse-hintergrundbild.jpg');
+  background-size: auto, auto, auto, cover;
+  background-position: center, center, center, center;
+  background-repeat: no-repeat;
   color: var(--text-on-dark);
   display: flex;
   flex-direction: column;
   padding-top: 72px;
   overflow: hidden;
 }
+.hero-modern > * { position: relative; }
 .hero-modern::before {
   content: "";
   position: absolute; inset: 0;
@@ -852,27 +857,27 @@ h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
   perspective-origin: 50% 50%;
 }
 
-/* --- Floating Hero Images --- */
+/* --- Floating Hero Images (sehr dezent) --- */
 .hero-main-image {
   transform-style: preserve-3d;
-  animation: float-3d 7s ease-in-out infinite;
+  animation: float-3d 11s ease-in-out infinite;
   will-change: transform;
-  transition: transform 0.4s cubic-bezier(.22,.61,.36,1);
+  transition: transform 0.5s cubic-bezier(.22,.61,.36,1);
 }
 .hero-main-image img { transform: translateZ(0); }
 .hero-thumb {
   transform-style: preserve-3d;
   will-change: transform;
-  transition: transform 0.4s cubic-bezier(.22,.61,.36,1);
+  transition: transform 0.5s cubic-bezier(.22,.61,.36,1);
 }
-.hero-thumb:nth-child(1) { animation: float-3d 8s ease-in-out infinite; animation-delay: -2s; }
-.hero-thumb:nth-child(2) { animation: float-3d 9s ease-in-out infinite; animation-delay: -4s; }
+.hero-thumb:nth-child(1) { animation: float-3d 12s ease-in-out infinite; animation-delay: -3s; }
+.hero-thumb:nth-child(2) { animation: float-3d 13s ease-in-out infinite; animation-delay: -6s; }
 
 @keyframes float-3d {
-  0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
-  25%      { transform: translateY(-6px) rotateX(1.5deg) rotateY(-1deg); }
-  50%      { transform: translateY(-3px) rotateX(-1deg)  rotateY(1.5deg); }
-  75%      { transform: translateY(-8px) rotateX(0.5deg) rotateY(0.5deg); }
+  0%, 100% { transform: translateY(0)    rotateX(0deg)   rotateY(0deg); }
+  25%      { transform: translateY(-2px) rotateX(0.4deg) rotateY(-0.3deg); }
+  50%      { transform: translateY(-1px) rotateX(-0.3deg) rotateY(0.4deg); }
+  75%      { transform: translateY(-3px) rotateX(0.2deg) rotateY(0.2deg); }
 }
 
 /* Tilt-Klasse: wird per JS via CSS-Variablen --rx, --ry, --tz gesteuert */
