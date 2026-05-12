@@ -239,6 +239,39 @@
   </div>
 </section>
 
+<!-- ========== MATRIX REVEAL ========== -->
+<section class="matrix-reveal" id="matrixReveal" aria-label="Markenversprechen">
+  <canvas class="matrix-canvas" id="matrixCanvas" aria-hidden="true"></canvas>
+  <canvas class="sparks-canvas" id="sparksCanvas" aria-hidden="true"></canvas>
+
+  <div class="matrix-content">
+    <div class="matrix-tag">
+      <span class="matrix-dot" aria-hidden="true"></span>
+      <span>Eine neue Ära</span>
+    </div>
+
+    <h2 class="matrix-headline">
+      <span class="matrix-line-1">Präzision.</span>
+      <span class="matrix-line-2">Neu definiert.</span>
+    </h2>
+
+    <p class="matrix-sub">
+      Über 40 Jahre Handwerkskunst. Hauseigene Büchsenmacherei.<br>
+      Kuratierte Auswahl. Massgeschneiderte Lösungen — aus Solothurn.
+    </p>
+
+    <a href="shop.html" class="matrix-cta">
+      <span>Sortiment entdecken</span>
+      <span class="matrix-cta-arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
+
+  <div class="matrix-corners" aria-hidden="true">
+    <span class="mc tl"></span><span class="mc tr"></span>
+    <span class="mc bl"></span><span class="mc br"></span>
+  </div>
+</section>
+
 <!-- ========== FEATURE CTA: SCHIESSANLAGE ========== -->
 <section class="feature-cta">
   <div class="bg" style="background-image:url('https://waffen-froelicher.ch/wp-content/uploads/2024/07/CZ-TS2-Blue-Edition.png');"></div>
@@ -334,5 +367,231 @@
 </footer>
 
 <script src="script.js" defer></script>
+
+<!-- ========== MATRIX REVEAL — Animation Script ========== -->
+<script>
+(() => {
+  const section = document.getElementById('matrixReveal');
+  if (!section) return;
+
+  const matrixCanvas = document.getElementById('matrixCanvas');
+  const sparksCanvas = document.getElementById('sparksCanvas');
+  const mCtx = matrixCanvas.getContext('2d');
+  const sCtx = sparksCanvas.getContext('2d');
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const MATRIX_DURATION = reducedMotion ? 200 : 1900;
+  const SPARK_TIME    = MATRIX_DURATION + 100;
+  const REVEAL_TIME   = MATRIX_DURATION + 450;
+
+  // ---- Matrix Rain config ----
+  const FONT_SIZE = 16;
+  const CHARS = 'WAFFENFRÖLICHER0123456789·•★→↘∙◆⟡'.split('');
+  const BG_FILL    = 'rgba(10, 8, 6, 0.10)';
+  const HEAD_COLOR = '#fff5e0';
+  const BODY_COLOR = '#dcb152';
+
+  // ---- Sparks config ----
+  const SPARK_COLORS = ['#fff5e0', '#dcb152', '#a37414', '#ffe8b3'];
+
+  let drops = [];
+  let particles = [];
+  let matrixAlpha = 0;
+  let fadeOut = false;
+  let started = false;
+  let cssW = 0, cssH = 0;
+  let rafMatrix = 0, rafSparks = 0;
+
+  function sizeCanvas(canvas, ctx) {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cssW = canvas.clientWidth;
+    cssH = canvas.clientHeight;
+    canvas.width  = Math.max(1, Math.floor(cssW * dpr));
+    canvas.height = Math.max(1, Math.floor(cssH * dpr));
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(dpr, dpr);
+  }
+
+  function initDrops() {
+    const columns = Math.max(1, Math.floor(cssW / FONT_SIZE));
+    drops = new Array(columns).fill(0).map(() => ({
+      y: Math.random() * cssH * -1,
+      speed: 0.6 + Math.random() * 0.4
+    }));
+  }
+
+  function resize() {
+    sizeCanvas(matrixCanvas, mCtx);
+    sizeCanvas(sparksCanvas, sCtx);
+    initDrops();
+  }
+
+  function hexToRgba(hex, a) {
+    const h = hex.replace('#', '');
+    const r = parseInt(h.substring(0, 2), 16);
+    const g = parseInt(h.substring(2, 4), 16);
+    const b = parseInt(h.substring(4, 6), 16);
+    return `rgba(${r}, ${g}, ${b}, ${a})`;
+  }
+
+  // ---- Matrix loop ----
+  function drawMatrix() {
+    // Fade-in / Fade-out alpha
+    if (!fadeOut && matrixAlpha < 1) matrixAlpha = Math.min(1, matrixAlpha + 0.04);
+    if (fadeOut)                     matrixAlpha = Math.max(0, matrixAlpha - 0.025);
+    matrixCanvas.style.opacity = matrixAlpha.toFixed(3);
+
+    // Trail overlay — accumulates while not fading out
+    if (!fadeOut) {
+      mCtx.fillStyle = BG_FILL;
+      mCtx.fillRect(0, 0, cssW, cssH);
+    } else {
+      // Sanftes Auswischen während Fade-out
+      mCtx.fillStyle = 'rgba(10, 8, 6, 0.18)';
+      mCtx.fillRect(0, 0, cssW, cssH);
+    }
+
+    mCtx.font = `${FONT_SIZE}px "JetBrains Mono", "Menlo", "Courier New", monospace`;
+    mCtx.textBaseline = 'top';
+
+    for (let i = 0; i < drops.length; i++) {
+      const d = drops[i];
+      const x = i * FONT_SIZE;
+      const head  = CHARS[(Math.random() * CHARS.length) | 0];
+      const trail = CHARS[(Math.random() * CHARS.length) | 0];
+
+      // Head (cream, leicht glowing)
+      mCtx.shadowColor = HEAD_COLOR;
+      mCtx.shadowBlur  = 8;
+      mCtx.fillStyle   = `rgba(255, 245, 224, ${0.95})`;
+      mCtx.fillText(head, x, d.y);
+
+      // Trail (gold, dimmed)
+      mCtx.shadowBlur  = 0;
+      mCtx.fillStyle   = `rgba(220, 177, 82, 0.55)`;
+      mCtx.fillText(trail, x, d.y - FONT_SIZE);
+
+      d.y += d.speed * FONT_SIZE * 0.55;
+      if (d.y > cssH && Math.random() > 0.975) {
+        d.y = -FONT_SIZE * 2;
+        d.speed = 0.6 + Math.random() * 0.4;
+      }
+    }
+
+    if (fadeOut && matrixAlpha <= 0) {
+      mCtx.clearRect(0, 0, cssW, cssH);
+      return; // Loop ends
+    }
+    rafMatrix = requestAnimationFrame(drawMatrix);
+  }
+
+  // ---- Sparks loop ----
+  function spawnBurst(cx, cy, count) {
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = (1 + Math.random() * 6) * 1.4;
+      particles.push({
+        x: cx, y: cy,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - Math.random() * 2,
+        size: 1.5 + Math.random() * 2,
+        life: 1,
+        color: SPARK_COLORS[(Math.random() * SPARK_COLORS.length) | 0]
+      });
+    }
+  }
+
+  function drawSparks() {
+    sCtx.clearRect(0, 0, cssW, cssH);
+    sCtx.globalCompositeOperation = 'lighter';
+
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.vy += 0.12;          // gravity
+      p.vx *= 0.99;          // drag
+      p.x  += p.vx;
+      p.y  += p.vy;
+      p.life -= 0.013;
+
+      if (p.life <= 0) { particles.splice(i, 1); continue; }
+
+      const a    = Math.max(0, p.life);
+      const size = p.size * a;
+
+      // Glow halo
+      sCtx.fillStyle = hexToRgba(p.color, a * 0.15);
+      sCtx.beginPath();
+      sCtx.arc(p.x, p.y, size * 3, 0, Math.PI * 2);
+      sCtx.fill();
+
+      // Core
+      sCtx.fillStyle = hexToRgba(p.color, a);
+      sCtx.beginPath();
+      sCtx.arc(p.x, p.y, size, 0, Math.PI * 2);
+      sCtx.fill();
+    }
+
+    // Stop only when sparks done AND matrix done
+    if (particles.length === 0 && fadeOut && matrixAlpha <= 0) {
+      sCtx.clearRect(0, 0, cssW, cssH);
+      rafSparks = 0;
+      return;
+    }
+    rafSparks = requestAnimationFrame(drawSparks);
+  }
+
+  // ---- Sequence ----
+  function start() {
+    if (started) return;
+    started = true;
+    resize();
+
+    rafMatrix = requestAnimationFrame(drawMatrix);
+    rafSparks = requestAnimationFrame(drawSparks);
+
+    // Spark burst
+    setTimeout(() => {
+      spawnBurst(cssW / 2, cssH / 2, reducedMotion ? 60 : 210);
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          const x = cssW * (0.3 + Math.random() * 0.4);
+          const y = cssH * (0.3 + Math.random() * 0.4);
+          spawnBurst(x, y, reducedMotion ? 25 : 80);
+        }, 120 * (i + 1));
+      }
+    }, SPARK_TIME);
+
+    // Reveal content & fade matrix
+    setTimeout(() => {
+      fadeOut = true;
+      section.classList.add('is-revealed');
+    }, REVEAL_TIME);
+  }
+
+  // Initial sizing so canvas is not 0×0 when start() fires
+  resize();
+
+  // Trigger via IntersectionObserver
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        start();
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.45 });
+  io.observe(section);
+
+  // Resize with debounce
+  let resizeTO;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTO);
+    resizeTO = setTimeout(() => {
+      resize();
+    }, 150);
+  });
+})();
+</script>
+
 </body>
 </html>
