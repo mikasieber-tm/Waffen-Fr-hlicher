@@ -483,18 +483,63 @@ h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
   overflow: hidden;
   isolation: isolate;
 }
-.hero-modern > .hero-bg-video {
+.hero-modern > .hero-bg-pistol {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  transform: scale(0.55);
-  transform-origin: center;
   z-index: 0;
-  opacity: 0.65;
-  filter: grayscale(0.15) brightness(0.95);
   pointer-events: none;
+  opacity: 0.9;
+  animation: pistolFloat 9s ease-in-out infinite;
+}
+.hero-bg-pistol .pistol-wireframe {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: pistolDrift 18s ease-in-out infinite;
+}
+.hero-bg-pistol .pistol-lines line {
+  fill: none;
+  stroke: url(#pistolLine);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: pistolDraw 2.8s ease-out forwards, pistolLineFlicker 7s ease-in-out infinite 3s;
+}
+.hero-bg-pistol .pistol-lines line:nth-child(odd)  { animation-delay: 0s,   3.0s; }
+.hero-bg-pistol .pistol-lines line:nth-child(even) { animation-delay: 0.15s, 3.4s; }
+.hero-bg-pistol .pistol-dots circle {
+  r: 2.2;
+  fill: #e9d6b3;
+  opacity: 0;
+  animation: pistolDotIn 0.4s ease-out forwards, pistolDotPulse 3.6s ease-in-out infinite;
+}
+.hero-bg-pistol .pistol-dots circle:nth-child(3n)   { animation-delay: 1.6s, 4.0s; }
+.hero-bg-pistol .pistol-dots circle:nth-child(3n+1) { animation-delay: 1.9s, 4.6s; }
+.hero-bg-pistol .pistol-dots circle:nth-child(3n+2) { animation-delay: 2.2s, 5.2s; }
+
+@keyframes pistolDraw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes pistolDotIn {
+  to { opacity: 0.95; }
+}
+@keyframes pistolDotPulse {
+  0%, 100% { opacity: 0.55; r: 1.8; }
+  50%      { opacity: 1;    r: 2.8; }
+}
+@keyframes pistolLineFlicker {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.55; }
+}
+@keyframes pistolFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+@keyframes pistolDrift {
+  0%, 100% { transform: scale(1)    rotate(0deg); }
+  50%      { transform: scale(1.02) rotate(-0.6deg); }
 }
 .hero-modern::before {
   content: "";
