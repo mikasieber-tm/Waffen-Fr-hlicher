@@ -33,7 +33,7 @@
 
 <!-- ========== MODERN EDITORIAL HERO ========== -->
 <section class="hero-modern">
-  <svg class="hero-bg-pistol" viewBox="0 0 700 520" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+  <svg class="hero-bg-pistol" viewBox="0 0 1000 680" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
     <defs>
       <filter id="pistolGlow" x="-20%" y="-20%" width="140%" height="140%">
         <feGaussianBlur stdDeviation="1.6" result="blur"/>
@@ -50,103 +50,112 @@
 
     <g class="pistol-wireframe" filter="url(#pistolGlow)">
       <g class="pistol-lines">
-        <!-- Outline (closed polygon, clockwise from rear-top-of-slide) -->
-        <line x1="125" y1="80"  x2="640" y2="80"/>   <!-- slide top -->
-        <line x1="640" y1="80"  x2="640" y2="165"/>  <!-- muzzle face -->
-        <line x1="640" y1="165" x2="370" y2="165"/>  <!-- slide/dustcover bottom -->
-        <line x1="370" y1="165" x2="360" y2="205"/>  <!-- front of frame -->
-        <line x1="360" y1="205" x2="305" y2="215"/>  <!-- trigger guard front-top -->
-        <line x1="305" y1="215" x2="275" y2="260"/>  <!-- trigger guard front -->
-        <line x1="275" y1="260" x2="240" y2="295"/>  <!-- trigger guard front-bottom -->
-        <line x1="240" y1="295" x2="195" y2="290"/>  <!-- trigger guard bottom -->
-        <line x1="195" y1="290" x2="180" y2="255"/>  <!-- trigger guard back-bottom -->
-        <line x1="180" y1="255" x2="170" y2="225"/>  <!-- trigger guard back-top -->
-        <line x1="170" y1="225" x2="165" y2="285"/>  <!-- frame down to grip front -->
-        <line x1="165" y1="285" x2="155" y2="370"/>  <!-- grip front upper -->
-        <line x1="155" y1="370" x2="172" y2="445"/>  <!-- grip front lower -->
-        <line x1="172" y1="445" x2="115" y2="465"/>  <!-- grip bottom front -->
-        <line x1="115" y1="465" x2="60"  y2="460"/>  <!-- mag baseplate -->
-        <line x1="60"  y1="460" x2="42"  y2="435"/>  <!-- grip back bottom -->
-        <line x1="42"  y1="435" x2="33"  y2="360"/>  <!-- grip back middle -->
-        <line x1="33"  y1="360" x2="40"  y2="260"/>  <!-- grip back upper -->
-        <line x1="40"  y1="260" x2="75"  y2="200"/>  <!-- beavertail lower -->
-        <line x1="75"  y1="200" x2="125" y2="165"/>  <!-- beavertail upper -->
-        <line x1="125" y1="165" x2="125" y2="80"/>   <!-- slide rear face -->
+        <!-- ===== OUTLINE (closed polygon, clockwise from rear-top-of-slide) ===== -->
+        <line x1="50"  y1="130" x2="950" y2="130"/> <!-- slide top -->
+        <line x1="950" y1="130" x2="950" y2="315"/> <!-- muzzle face (slide+dustcover front) -->
+        <line x1="950" y1="315" x2="470" y2="315"/> <!-- bottom of dustcover -->
+        <line x1="470" y1="315" x2="480" y2="360"/> <!-- TG front-top -->
+        <line x1="480" y1="360" x2="485" y2="410"/> <!-- TG front -->
+        <line x1="485" y1="410" x2="465" y2="445"/> <!-- TG front-bottom curve -->
+        <line x1="465" y1="445" x2="425" y2="460"/> <!-- TG bottom-front -->
+        <line x1="425" y1="460" x2="375" y2="460"/> <!-- TG bottom -->
+        <line x1="375" y1="460" x2="335" y2="450"/> <!-- TG bottom-back -->
+        <line x1="335" y1="450" x2="315" y2="420"/> <!-- TG back-bottom -->
+        <line x1="315" y1="420" x2="315" y2="380"/> <!-- TG back -->
+        <line x1="315" y1="380" x2="320" y2="315"/> <!-- TG back-top -->
+        <line x1="320" y1="315" x2="310" y2="380"/> <!-- frame down to grip front -->
+        <line x1="310" y1="380" x2="300" y2="470"/> <!-- grip front upper -->
+        <line x1="300" y1="470" x2="300" y2="565"/> <!-- grip front middle -->
+        <line x1="300" y1="565" x2="305" y2="625"/> <!-- grip front lower -->
+        <line x1="305" y1="625" x2="290" y2="660"/> <!-- grip front to mag base -->
+        <line x1="290" y1="660" x2="110" y2="660"/> <!-- mag baseplate bottom -->
+        <line x1="110" y1="660" x2="85"  y2="625"/> <!-- mag base to grip back -->
+        <line x1="85"  y1="625" x2="75"  y2="555"/> <!-- grip back lower -->
+        <line x1="75"  y1="555" x2="60"  y2="460"/> <!-- grip back middle -->
+        <line x1="60"  y1="460" x2="50"  y2="360"/> <!-- grip back upper -->
+        <line x1="50"  y1="360" x2="50"  y2="250"/> <!-- grip back / beavertail -->
+        <line x1="50"  y1="250" x2="50"  y2="130"/> <!-- slide rear face -->
 
-        <!-- Rear sight -->
-        <line x1="145" y1="80" x2="145" y2="62"/>
-        <line x1="145" y1="62" x2="180" y2="62"/>
-        <line x1="180" y1="62" x2="180" y2="80"/>
+        <!-- ===== REAR SIGHT (rectangular post) ===== -->
+        <line x1="110" y1="130" x2="110" y2="95"/>
+        <line x1="110" y1="95"  x2="170" y2="95"/>
+        <line x1="170" y1="95"  x2="170" y2="130"/>
 
-        <!-- Front sight -->
-        <line x1="580" y1="80" x2="590" y2="64"/>
-        <line x1="590" y1="64" x2="600" y2="80"/>
+        <!-- ===== FRONT SIGHT (triangular post) ===== -->
+        <line x1="855" y1="130" x2="870" y2="100"/>
+        <line x1="870" y1="100" x2="885" y2="130"/>
 
-        <!-- Ejection port -->
-        <line x1="310" y1="95"  x2="510" y2="95"/>
-        <line x1="510" y1="95"  x2="510" y2="130"/>
-        <line x1="510" y1="130" x2="310" y2="130"/>
-        <line x1="310" y1="130" x2="310" y2="95"/>
+        <!-- ===== EJECTION PORT (rectangle on slide) ===== -->
+        <line x1="450" y1="155" x2="720" y2="155"/>
+        <line x1="720" y1="155" x2="720" y2="220"/>
+        <line x1="720" y1="220" x2="450" y2="220"/>
+        <line x1="450" y1="220" x2="450" y2="155"/>
 
-        <!-- Trigger guard inside curve -->
-        <line x1="270" y1="232" x2="245" y2="262"/>
-        <line x1="245" y1="262" x2="225" y2="278"/>
-        <line x1="225" y1="278" x2="205" y2="272"/>
-        <line x1="205" y1="272" x2="192" y2="248"/>
+        <!-- ===== TRIGGER GUARD INNER EDGE (the hole) ===== -->
+        <line x1="455" y1="345" x2="455" y2="415"/>
+        <line x1="455" y1="415" x2="415" y2="435"/>
+        <line x1="415" y1="435" x2="370" y2="435"/>
+        <line x1="370" y1="435" x2="340" y2="420"/>
+        <line x1="340" y1="420" x2="340" y2="380"/>
+        <line x1="340" y1="380" x2="345" y2="345"/>
+        <line x1="345" y1="345" x2="455" y2="345"/>
 
-        <!-- Trigger -->
-        <line x1="215" y1="245" x2="222" y2="278"/>
-        <line x1="222" y1="278" x2="232" y2="285"/>
+        <!-- ===== TRIGGER (inside trigger guard) ===== -->
+        <line x1="380" y1="345" x2="385" y2="415"/>
+        <line x1="385" y1="415" x2="400" y2="425"/>
 
-        <!-- Slide serrations (rear, slanted) -->
-        <line x1="92"  y1="92" x2="105" y2="152"/>
-        <line x1="105" y1="92" x2="118" y2="152"/>
+        <!-- ===== SLIDE SERRATIONS (rear of slide) ===== -->
+        <line x1="65"  y1="145" x2="78"  y2="240"/>
+        <line x1="82"  y1="145" x2="95"  y2="240"/>
 
-        <!-- Takedown pin (small circle marker via 2 short lines) -->
-        <line x1="335" y1="148" x2="345" y2="148"/>
+        <!-- ===== TAKEDOWN PIN (mark on frame) ===== -->
+        <line x1="520" y1="290" x2="540" y2="290"/>
 
-        <!-- Grip texture -->
-        <line x1="65"  y1="295" x2="150" y2="310"/>
-        <line x1="60"  y1="330" x2="148" y2="345"/>
-        <line x1="55"  y1="370" x2="148" y2="385"/>
-        <line x1="50"  y1="405" x2="152" y2="420"/>
+        <!-- ===== MAGAZINE RELEASE (small mark on grip) ===== -->
+        <line x1="290" y1="385" x2="290" y2="400"/>
 
-        <!-- Magazine release button (short tick) -->
-        <line x1="148" y1="248" x2="158" y2="248"/>
+        <!-- ===== GRIP TEXTURE (stippling lines) ===== -->
+        <line x1="95"  y1="430" x2="305" y2="450"/>
+        <line x1="90"  y1="480" x2="302" y2="500"/>
+        <line x1="85"  y1="530" x2="302" y2="550"/>
+        <line x1="90"  y1="580" x2="305" y2="600"/>
       </g>
 
       <g class="pistol-dots">
         <!-- Outline vertices -->
-        <circle cx="125" cy="80"/><circle cx="640" cy="80"/><circle cx="640" cy="165"/>
-        <circle cx="370" cy="165"/><circle cx="360" cy="205"/><circle cx="305" cy="215"/>
-        <circle cx="275" cy="260"/><circle cx="240" cy="295"/><circle cx="195" cy="290"/>
-        <circle cx="180" cy="255"/><circle cx="170" cy="225"/><circle cx="165" cy="285"/>
-        <circle cx="155" cy="370"/><circle cx="172" cy="445"/><circle cx="115" cy="465"/>
-        <circle cx="60"  cy="460"/><circle cx="42"  cy="435"/><circle cx="33"  cy="360"/>
-        <circle cx="40"  cy="260"/><circle cx="75"  cy="200"/>
-        <!-- Sights -->
-        <circle cx="145" cy="80"/><circle cx="145" cy="62"/><circle cx="180" cy="62"/><circle cx="180" cy="80"/>
-        <circle cx="580" cy="80"/><circle cx="590" cy="64"/><circle cx="600" cy="80"/>
+        <circle cx="50"  cy="130"/><circle cx="950" cy="130"/><circle cx="950" cy="315"/>
+        <circle cx="470" cy="315"/><circle cx="480" cy="360"/><circle cx="485" cy="410"/>
+        <circle cx="465" cy="445"/><circle cx="425" cy="460"/><circle cx="375" cy="460"/>
+        <circle cx="335" cy="450"/><circle cx="315" cy="420"/><circle cx="315" cy="380"/>
+        <circle cx="320" cy="315"/><circle cx="310" cy="380"/><circle cx="300" cy="470"/>
+        <circle cx="300" cy="565"/><circle cx="305" cy="625"/><circle cx="290" cy="660"/>
+        <circle cx="110" cy="660"/><circle cx="85"  cy="625"/><circle cx="75"  cy="555"/>
+        <circle cx="60"  cy="460"/><circle cx="50"  cy="360"/><circle cx="50"  cy="250"/>
+        <!-- Rear sight -->
+        <circle cx="110" cy="95"/><circle cx="170" cy="95"/>
+        <!-- Front sight -->
+        <circle cx="870" cy="100"/><circle cx="855" cy="130"/><circle cx="885" cy="130"/>
         <!-- Ejection port -->
-        <circle cx="310" cy="95"/><circle cx="510" cy="95"/>
-        <circle cx="510" cy="130"/><circle cx="310" cy="130"/>
-        <!-- Trigger guard inside -->
-        <circle cx="270" cy="232"/><circle cx="245" cy="262"/><circle cx="225" cy="278"/>
-        <circle cx="205" cy="272"/><circle cx="192" cy="248"/>
+        <circle cx="450" cy="155"/><circle cx="720" cy="155"/>
+        <circle cx="720" cy="220"/><circle cx="450" cy="220"/>
+        <!-- Trigger guard inner -->
+        <circle cx="455" cy="345"/><circle cx="455" cy="415"/><circle cx="415" cy="435"/>
+        <circle cx="370" cy="435"/><circle cx="340" cy="420"/><circle cx="340" cy="380"/>
+        <circle cx="345" cy="345"/>
         <!-- Trigger -->
-        <circle cx="215" cy="245"/><circle cx="222" cy="278"/><circle cx="232" cy="285"/>
+        <circle cx="380" cy="345"/><circle cx="385" cy="415"/><circle cx="400" cy="425"/>
         <!-- Serrations -->
-        <circle cx="92"  cy="92"/><circle cx="105" cy="152"/>
-        <circle cx="105" cy="92"/><circle cx="118" cy="152"/>
+        <circle cx="65"  cy="145"/><circle cx="78"  cy="240"/>
+        <circle cx="82"  cy="145"/><circle cx="95"  cy="240"/>
         <!-- Takedown -->
-        <circle cx="335" cy="148"/><circle cx="345" cy="148"/>
-        <!-- Grip texture -->
-        <circle cx="65"  cy="295"/><circle cx="150" cy="310"/>
-        <circle cx="60"  cy="330"/><circle cx="148" cy="345"/>
-        <circle cx="55"  cy="370"/><circle cx="148" cy="385"/>
-        <circle cx="50"  cy="405"/><circle cx="152" cy="420"/>
+        <circle cx="520" cy="290"/><circle cx="540" cy="290"/>
         <!-- Mag release -->
-        <circle cx="148" cy="248"/><circle cx="158" cy="248"/>
+        <circle cx="290" cy="385"/><circle cx="290" cy="400"/>
+        <!-- Grip texture endpoints -->
+        <circle cx="95"  cy="430"/><circle cx="305" cy="450"/>
+        <circle cx="90"  cy="480"/><circle cx="302" cy="500"/>
+        <circle cx="85"  cy="530"/><circle cx="302" cy="550"/>
+        <circle cx="90"  cy="580"/><circle cx="305" cy="600"/>
       </g>
     </g>
   </svg>
