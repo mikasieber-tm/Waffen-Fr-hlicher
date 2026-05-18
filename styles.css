@@ -501,7 +501,7 @@ h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
 .hero-bg-pistol .pistol-lines line {
   fill: none;
   stroke: url(#pistolLine);
-  stroke-width: 1.2;
+  stroke-width: 1.8;
   stroke-linecap: round;
   stroke-dasharray: 1200;
   stroke-dashoffset: 1200;
@@ -510,7 +510,7 @@ h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
 .hero-bg-pistol .pistol-lines line:nth-child(odd)  { animation-delay: 0s,   3.0s; }
 .hero-bg-pistol .pistol-lines line:nth-child(even) { animation-delay: 0.15s, 3.4s; }
 .hero-bg-pistol .pistol-dots circle {
-  r: 2.2;
+  r: 2.8;
   fill: #e9d6b3;
   opacity: 0;
   animation: pistolDotIn 0.4s ease-out forwards, pistolDotPulse 3.6s ease-in-out infinite;
@@ -526,8 +526,8 @@ h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
   to { opacity: 0.95; }
 }
 @keyframes pistolDotPulse {
-  0%, 100% { opacity: 0.55; r: 1.8; }
-  50%      { opacity: 1;    r: 2.8; }
+  0%, 100% { opacity: 0.7; r: 2.4; }
+  50%      { opacity: 1;   r: 3.4; }
 }
 @keyframes pistolLineFlicker {
   0%, 100% { opacity: 1; }
