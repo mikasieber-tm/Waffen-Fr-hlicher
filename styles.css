@@ -475,30 +475,45 @@ h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
 .hero-modern {
   position: relative;
   min-height: 100vh;
-  background:
-    radial-gradient(circle at 18% 28%, rgba(176,141,87,0.10) 0%, transparent 45%),
-    radial-gradient(circle at 82% 72%, rgba(176,141,87,0.06) 0%, transparent 50%),
-    linear-gradient(180deg, rgba(10,10,10,0.92) 0%, rgba(20,20,20,0.88) 60%, rgba(14,14,14,0.95) 100%),
-    url('feuerwaffe-gewehr-waffe-buchse-hintergrundbild.jpg');
-  background-size: auto, auto, auto, cover;
-  background-position: center, center, center, center;
-  background-repeat: no-repeat;
+  background: #0a0a0a;
   color: var(--text-on-dark);
   display: flex;
   flex-direction: column;
   padding-top: 72px;
   overflow: hidden;
+  isolation: isolate;
 }
-.hero-modern > * { position: relative; }
+.hero-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
 .hero-modern::before {
   content: "";
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 28%, rgba(176,141,87,0.12) 0%, transparent 45%),
+    radial-gradient(circle at 82% 72%, rgba(176,141,87,0.08) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(10,10,10,0.72) 0%, rgba(15,15,15,0.62) 60%, rgba(10,10,10,0.82) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-modern > * { position: relative; z-index: 2; }
+.hero-modern-grid-overlay {
+  position: absolute;
+  inset: 0;
   background-image:
     linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
   background-size: 64px 64px;
   pointer-events: none;
   opacity: 0.6;
+  z-index: 1;
 }
 .hero-modern::after {
   content: "EST. 1984";
